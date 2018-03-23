@@ -1,39 +1,48 @@
 /**
  *  
  * Usage:
- *  var jsbase = require(JsBase.js)
+ *  var jsbase = require(jsbase.js)
  *  
  */
-var JsBase = {};
+var jsbase = {};
 
-module.exports = JsBase;
+module.exports = jsbase;
 
-JsBase.InsertSort = function(arr){    
-    if(!arr instanceof Array){
+jsbase.InsertSortDescend = function (arr) {
+    if (!arr instanceof Array) {
         console.error("Error argument, argument type is " + typeof arr + ", require Array");
         return void 0;
     }
-    var cloneArr = JsBase.clone(arr);
-    for(var i = 0;i < JsBase.SizeOf)
+    var cloneArr = jsbase.clone(arr);
+    for (var i = 1; i < jsbase.SizeOf(cloneArr); i++) {
+        var key = cloneArr[i];
+        var j = i - 1;
+        while (j >= 0 && cloneArr[j] < key) {
+            cloneArr[j + 1] = cloneArr[j];
+            j--;
+        }
+        cloneArr[j+1] = key;
+    }
+    return cloneArr;
 }
 
-JsBase.SizeOf = function(obj){
+jsbase.SizeOf = function (obj) {
     var count = void 0;
-    if(obj instanceof Array){
+    if (obj instanceof Array) {
         count = obj.length;
-    }else if(typeof obj == "object"){
+    } else if (typeof obj == "object") {
         count = 0;
-        for(var key in obj){
+        for (var key in obj) {
             count++;
         }
-    }else if(typeof obj == "string"){
+    } else if (typeof obj == "string") {
         return obj.length;
     }
     return count;
 }
 
 //Clone obj
-JsBase.clone = function(obj) {
+jsbase.clone = function (obj) {
     var o;
     if (typeof obj == "object") {
         if (obj === null) {
@@ -42,12 +51,12 @@ JsBase.clone = function(obj) {
             if (obj instanceof Array) {
                 o = [];
                 for (var i = 0, len = obj.length; i < len; i++) {
-                    o.push(clone(obj[i]));
+                    o.push(jsbase.clone(obj[i]));
                 }
             } else {
                 o = {};
                 for (var j in obj) {
-                    o[j] = clone(obj[j]);
+                    o[j] = jsbase.clone(obj[j]);
                 }
             }
         }
