@@ -6,7 +6,10 @@
  */
 var JsBase = {};
 
-module.exports = JsBase;
+if(module){
+	module.exports = JsBase;
+}
+
 
 JsBase.InsertSortDescend = function (arr) {
 	if (!(arr instanceof Array)) {
@@ -66,6 +69,11 @@ JsBase.clone = function (obj) {
 	return o;
 }
 
-JsBase.GetCurTimeStamp = function () {
+JsBase.GetCurTimestamp = function () {
 	return (new Date).getTime();
+}
+
+//All value except undefined is VALID
+JsBase.IsValid = function (value) {
+	return typeof(value) !== undefined;
 }
