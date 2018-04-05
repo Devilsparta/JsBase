@@ -73,9 +73,9 @@ JsBase.GetCurTimestamp = function () {
 
 //All value except undefined is VALID
 JsBase.IsValid = function (value) {
-	return typeof (value) !== undefined;
+	return typeof (value) !== "undefined";
 }
 
-if (typeof module !== undefined) {
+if (typeof module !== "undefined") {
 	module.exports = JsBase;
 }
