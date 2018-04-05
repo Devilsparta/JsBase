@@ -1,20 +1,20 @@
 /**
  *  
  * Usage:
- *  var jsbase = require(jsbase.js)
+ *  var JsBase = require(JsBase.js)
  *  
  */
-var jsbase = {};
+var JsBase = {};
 
-module.exports = jsbase;
+module.exports = JsBase;
 
-jsbase.InsertSortDescend = function (arr) {
+JsBase.InsertSortDescend = function (arr) {
 	if (!(arr instanceof Array)) {
 		console.error("Error argument, argument type is " + typeof arr + ", require Array");
 		return void 0;
 	}
-	var cloneArr = jsbase.clone(arr);
-	for (var i = 1; i < jsbase.SizeOf(cloneArr); i++) {
+	var cloneArr = JsBase.clone(arr);
+	for (var i = 1; i < JsBase.SizeOf(cloneArr); i++) {
 		var key = cloneArr[i];
 		var j = i - 1;
 		while (j >= 0 && cloneArr[j] < key) {
@@ -26,7 +26,7 @@ jsbase.InsertSortDescend = function (arr) {
 	return cloneArr;
 }
 
-jsbase.SizeOf = function (obj) {
+JsBase.SizeOf = function (obj) {
 	var count = void 0;
 	if (obj instanceof Array) {
 		count = obj.length;
@@ -42,7 +42,7 @@ jsbase.SizeOf = function (obj) {
 }
 
 //Clone obj
-jsbase.clone = function (obj) {
+JsBase.clone = function (obj) {
 	var o;
 	if (typeof obj == "object") {
 		if (obj === null) {
@@ -51,12 +51,12 @@ jsbase.clone = function (obj) {
 			if (obj instanceof Array) {
 				o = [];
 				for (var i = 0, len = obj.length; i < len; i++) {
-					o.push(jsbase.clone(obj[i]));
+					o.push(JsBase.clone(obj[i]));
 				}
 			} else {
 				o = {};
 				for (var j in obj) {
-					o[j] = jsbase.clone(obj[j]);
+					o[j] = JsBase.clone(obj[j]);
 				}
 			}
 		}
