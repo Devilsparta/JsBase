@@ -14,7 +14,7 @@ JsBase.InsertSortDescend = function (arr) {
 		console.error("Error argument, argument type is " + typeof arr + ", require Array");
 		return void 0;
 	}
-	var cloneArr = JsBase.clone(arr);
+	var cloneArr = JsBase.Clone(arr);
 	for (var i = 1; i < JsBase.SizeOf(cloneArr); i++) {
 		var key = cloneArr[i];
 		var j = i - 1;
@@ -43,7 +43,7 @@ JsBase.SizeOf = function (obj) {
 }
 
 //Clone obj
-JsBase.clone = function (obj) {
+JsBase.Clone = function (obj) {
 	var o;
 	if (typeof obj == "object") {
 		if (obj === null) {
@@ -52,12 +52,12 @@ JsBase.clone = function (obj) {
 			if (obj instanceof Array) {
 				o = [];
 				for (var i = 0, len = obj.length; i < len; i++) {
-					o.push(JsBase.clone(obj[i]));
+					o.push(JsBase.Clone(obj[i]));
 				}
 			} else {
 				o = {};
 				for (var j in obj) {
-					o[j] = JsBase.clone(obj[j]);
+					o[j] = JsBase.Clone(obj[j]);
 				}
 			}
 		}
