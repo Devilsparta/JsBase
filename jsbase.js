@@ -76,6 +76,16 @@ JsBase.IsValid = function (value) {
 	return typeof (value) !== "undefined";
 }
 
+JsBase.GenSingletonInst = function (classPt) {
+	return function(){
+		if(!classPt.Inst){
+			var ctorFunc = Function.prototype.bind.apply(classPt, arguments);
+			classPt.Inst = new ctorFunc();
+		}
+		return classPt.Inst;
+	}
+}
+
 if (typeof module !== "undefined") {
 	module.exports = JsBase;
 }
